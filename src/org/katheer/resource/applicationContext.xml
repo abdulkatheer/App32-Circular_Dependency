@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--
+    <bean id="bean1" class="org.katheer.bean.Bean1">
+        <constructor-arg ref="bean2"/>
+    </bean>
+    <bean id="bean2" class="org.katheer.bean.Bean2">
+        <constructor-arg ref="bean1"/>
+    </bean>
+    -->
+
+    <context:annotation-config/>
+
+    <bean id="bean1" class="org.katheer.bean.Bean1" init-method="customInit" destroy-method="customDestroy">
+        <property name="bean2" ref="bean2"/>
+    </bean>
+    <bean id="bean2" class="org.katheer.bean.Bean2" init-method="customInit" destroy-method="customDestroy">
+        <property name="bean1" ref="bean1"/>
+    </bean>
+</beans>
